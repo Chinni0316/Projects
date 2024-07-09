@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        body{
+            background-color: rgb(49, 189, 28);
+        }
+        .wrapper{
+            width: 80vmin;
+            padding: 50px 40px;
+            background-color: rgb(145, 143, 143);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 5px;
+            box-shadow: 25px 25px 40px rgb(59, 59, 57);
+        }
+        span{
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 100px;
+        }
+        p{
+          font-size: 20px;
+          color: rgba(255, 255, 255, 0.935);
+          font-weight: 400;
+          text-align: center;
+          word-wrap: break-word;
+          line-height: 30px;
+          margin: 30px 0;
+          font-family: 'Times New Roman', Times, serif;
+        
+
+
+        }
+        button{
+            display: block;
+            background-color: rgb(7, 8, 2);
+            border: none;
+            padding: 5px;
+            font-size: 30px;
+            color: rgb(63, 60, 60);
+            margin: 0 auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <span>&#128514</span>
+        <p id="joke"></p>
+
+        <button id="btn">Get Random Jokes</button>
+    </div>
+    <script>
+        const jokeContainer=document.getElementById("joke")
+        const btn=document.getElementById("btn")
+        const url="https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&amount=10"
+        let getJoke=()=>{
+            try{
+            fetch(url)
+            .then(data =>data.json())
+            .then(item =>{
+                if(true){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                console.log(item.jokes)
+                jokeContainer.textContent=`${item.jokes[1].setup}`;
+               }
+               else{
+                jokeContainer.textContent=`${item.jokes[1].joke}`;
+               }
+                console.log(item);
+                jokeContainer.classList.add("fade");
+
+            });
+        }
+        catch{
+            console.error(error)
+            // jokeContainer.textContent=`${item.jokes[0].setup}`
+        }
+        }
+        btn.addEventListener("click",getJoke)
+        getJoke();
+
+        
+    </script>
+    
+</body>
+</html>
